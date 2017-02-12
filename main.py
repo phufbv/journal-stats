@@ -6,3 +6,5 @@ apjl_base = "http://iopscience.iop.org/issue/2041-8205/"
 latest_issue = "836/1" #same for both ApJ and ApJL - issues run in parallel
 
 
+start_url = apj_base + latest_issue
+r = requests.get(start_url)
