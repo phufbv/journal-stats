@@ -16,6 +16,7 @@ for num in range(1,num_articles+1):
         soup = BeautifulSoup(r.content)
         
         dates = soup.find('div', attrs={'class':'col-no-break wd-jnl-art-dates'}).text
+        #dates = soup.find('div', attrs={'class':'article-meta'})
         
         start = dates.find("Received ") + 9
         end = dates.find("Accepted")
