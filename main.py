@@ -1,37 +1,34 @@
 import requests
 from BeautifulSoup import BeautifulSoup
-from between import between
 
 apj_base = "http://iopscience.iop.org/article/10.3847/1538-4357/"
 
 latest_issue = "836/1/"  # same for both ApJ and ApJL - issues run in parallel
 
 
-num_articles = 1  # test using only first article for now
+num_articles = 5 #test using a few articles
 
-for art in range(1,num_articles+1):
-	url = apj_base + latest_issue + str(art)
-	
-	r = requests.get(url)
+for num in range(1,num_articles+1):
+    url = apj_base + latest_issue + str(num)
+    
+    try:
+        r = requests.get(url)
+        soup = BeautifulSoup(r.content)
+        
+        dates = soup.find('div', attrs={'class':'col-no-break wd-jnl-art-dates'}).text
+        #dates = soup.find('div', attrs={'class':'article-meta'})
 
-	#print r.status_code
-
-	soup = BeautifulSoup(r.content)
-	
-	dates = soup.find('div', attrs={'class':'col-no-break wd-jnl-art-dates'})
-	#dates = soup.find('div', attrs={'class':'article-meta'})
-
-	print type(dates)
-	print type(dates.contents)
-	print dates.contents
-	
-
-
-
-
-	#print dates.contents.split('Received')
-	#print ( (dates.split('Received'))[1].split('<br')[0] )
-	
-	#print between(dates,'Received: ','<br')
-	#print between(dates,'Accepted: ','<br')
-
+        start = dates.find("Received ") + 9
+        end = dates.find("Accepted")
+    
+        received_date = dates[start:end]
+    
+        start = dates.find("Accepted ") + 9
+        end = dates.find("Published")
+    
+        accepted_date = dates[start:end]
+    
+        print received_date, accepted_date
+    
+    except:
+        print "Some error occurred (URL '",url,"' not available?). Skipping."
