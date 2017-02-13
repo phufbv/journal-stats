@@ -30,5 +30,5 @@ for num in range(1,num_articles+1):
         print received_date, accepted_date
     
     except:
-        print "Some error occurred (URL '", url, "' not available?). Skipping."
+        print "Some error occurred (URL '",url,"' not available?). Skipping."
     
