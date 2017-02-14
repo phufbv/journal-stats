@@ -12,9 +12,10 @@ Outputs: .csv file (open in Excel)
 ### Technical details ###
 
 Assumptions:  
-* There are at least 40 articles per issue
-* There are 2 issues per volume, and *generally* 1 volume per month
+* There are at least 20 articles per issue
+* There are 2 issues per volume
+* There are 2 volumes per month, on average
 
-The program will attempt to load the URLs of the first 40 articles in issue 1 of the latest volume. It will retrieve the dates for as many of these as possible, before doing the same for issue 1 of the previous volume, and then issue 1 of the volume before that, etc.  
+The program will attempt to load the URLs of the first 20 articles in issue 1 of the latest volume. It will retrieve the dates for as many of these as possible, before doing the same for issue 1 of the previous volume, and then issue 1 of the volume before that, etc.  
 
-The program will loop through the latest 6 volumes in this manner, roughly corresponding to the previous 6 months, to return the dates for a sample of up to 240 articles.
+The program will loop through the latest 12 volumes in this manner, roughly corresponding to the previous 6 months, to return the dates for a sample of up to 240 articles (some URLs on the ApJ website are not consistent with the rest, so the date retrieval will fail for some articles).
