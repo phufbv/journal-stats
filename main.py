@@ -30,8 +30,7 @@ for volume in reversed(parameters.volume_list):
 	    
 		accepted_date = dates[start:end]
 	    
+		writer.writerow( (received_date, accepted_date) )
 		print received_date, accepted_date
-        writer.writerow( (received_date, accepted_date) )
 
 f.close()
-	    

@@ -4,4 +4,4 @@ volume_list = range(latest_volume-11,latest_volume+1)  # latest 12 volumes, roug
 
 issue = 1  # just using issue 1 in each volume
 
-num_articles = 1  # test using a few articles
+num_articles = 20
