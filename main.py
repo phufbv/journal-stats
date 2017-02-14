@@ -1,6 +1,11 @@
+import csv
 import parameters
 import html
 
+f = open("dates.csv", 'wb')
+writer = csv.writer(f, lineterminator='\n')
+writer.writerow( ('Date received', 'Date accepted') )
+writer.writerow( (' ') )
 
 for volume in reversed(parameters.volume_list):
 
@@ -26,4 +31,7 @@ for volume in reversed(parameters.volume_list):
 		accepted_date = dates[start:end]
 	    
 		print received_date, accepted_date
+        writer.writerow( (received_date, accepted_date) )
+
+f.close()
 	    
