@@ -1,3 +1,7 @@
+from datetime import datetime
+startTime = datetime.now()
+
+
 import logging
 
 # set up logging to file - see previous section for more details
@@ -19,3 +23,6 @@ console.setFormatter(formatter)
 
 # add the handler to the root logger
 logging.getLogger('').addHandler(console)
+
+
+print datetime.now() - startTime
