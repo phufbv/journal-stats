@@ -1,11 +1,26 @@
-import csv
+from file_writer import FileWriter
 import parameters
 import html
 
-f = open("dates.csv", 'wb')
-writer = csv.writer(f, lineterminator='\n')
-writer.writerow( ('Date received', 'Date accepted') )
-writer.writerow( (' ') )
+
+def get_received_date(date_string):
+	start = date_string.find("Received ") + 9
+	end = date_string.find("Accepted")
+		    
+	received_date = date_string[start:end]
+
+	return received_date
+
+def get_accepted_date(date_string):
+	start = date_string.find("Accepted ") + 9
+	end = date_string.find("Published")
+		    
+	accepted_date = date_string[start:end]
+
+	return accepted_date
+
+
+writer = FileWriter(parameters.filename)
 
 for volume in reversed(parameters.volume_list):
 
@@ -14,23 +29,15 @@ for volume in reversed(parameters.volume_list):
 		url = html.build_url(volume, parameters.issue, number)
 	    
 		try:
-			dates = html.get_date_div(url)
+			date_string = html.get_date_div(url)
 		except:
 			print "Some error occurred (URL '",url,"' not available?). Skipping."
 			break
 
 
-		start = dates.find("Received ") + 9
-		end = dates.find("Accepted")
+		received_date = get_received_date(date_string)
+		accepted_date = get_accepted_date(date_string)
 	    
-		received_date = dates[start:end]
-	    
-		start = dates.find("Accepted ") + 9
-		end = dates.find("Published")
-	    
-		accepted_date = dates[start:end]
-	    
-		writer.writerow( (received_date, accepted_date) )
-		print received_date, accepted_date
+		writer.write_to_file(received_date, accepted_date)
 
-f.close()
+writer.close_file()
