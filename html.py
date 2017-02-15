@@ -4,6 +4,8 @@ from BeautifulSoup import BeautifulSoup
 apj_base = "http://iopscience.iop.org/article/10.3847/1538-4357/"
 apj_base2 = "http://iopscience.iop.org/article/10.3847/0004-637X/"  # different base URL before vol.833 iss.2 for some reason
 
+apjl_base = "http://iopscience.iop.org/article/10.3847/2041-8213/"
+
 
 def build_url(volume, issue, number):
 	
