@@ -26,3 +26,11 @@ logging.getLogger('').addHandler(console)
 
 
 print datetime.now() - startTime
+
+
+
+#Google python using logging from another file
+#http://stackoverflow.com/questions/17035077/python-logging-to-multiple-log-files-from-different-classes
+#Google python logging library example
+#https://docs.python.org/2/howto/logging.html
+#http://stackoverflow.com/questions/9321741/printing-to-screen-and-writing-to-a-file-at-the-same-time
