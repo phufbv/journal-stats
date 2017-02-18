@@ -2,6 +2,8 @@ from file_writer import FileWriter
 import parameters
 import html
 
+from datetime import datetime
+
 
 def get_received_date(date_string):
 	start = date_string.find("Received ") + 9
@@ -18,6 +20,14 @@ def get_accepted_date(date_string):
 	accepted_date = date_string[start:end]
 
 	return accepted_date
+
+def find_difference(date1, date2):
+	d1 = datetime.strptime(date1, "%Y %B %d")
+	d2 = datetime.strptime(date2, "%Y %B %d")
+		    
+	difference = abs((d2 - d1).days)
+
+	return difference
 
 
 writer = FileWriter(parameters.filename)
@@ -37,7 +47,8 @@ for volume in reversed(parameters.volume_list):
 
 		received_date = get_received_date(date_string)
 		accepted_date = get_accepted_date(date_string)
+		difference = find_difference(received_date, accepted_date)
 	    
-		writer.write_to_file(received_date, accepted_date)
+		writer.write_to_file(received_date, accepted_date, difference)
 
 writer.close_file()
