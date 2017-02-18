@@ -1,7 +1,6 @@
 # journal-stats
 For comparative analysis of academic journal publication data.
 
-Currently in development.  
   
 ### Program description ###
 This program will go to The Astrophysical Journal website and retrieve the 'Received' and 'Accepted' dates for a sample of at least 500 articles, saving them into a spreadsheet.
