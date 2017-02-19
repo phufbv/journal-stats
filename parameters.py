@@ -1,6 +1,9 @@
 # Name of output file
 filename = "dates.csv"
 
+# Select journal - must be either "ApJ" or "ApJL"
+journal = "ApJ"
+
 # Number of articles to use from each issue
 num_articles = 30
 

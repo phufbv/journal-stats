@@ -2,31 +2,28 @@ import requests
 from BeautifulSoup import BeautifulSoup
 
 
-def build_url(volume, issue, number):
+def build_url(journal, volume, issue, number):
 	
-	apj_base = "http://iopscience.iop.org/article/10.3847/1538-4357/"
-	apj_base2 = "http://iopscience.iop.org/article/10.3847/0004-637X/"  # different base URL before vol.833 iss.2 for some reason
+	base_url = "http://iopscience.iop.org/article/10.3847/" 
 
-	vol_issue = str(volume) + "/" + str(issue) + "/"
-
-	if volume > 833:
-	    url = apj_base + vol_issue + str(number)
-	else:
-	    url = apj_base2 + vol_issue + str(number)
-
-	return url
-
-def build_letters_url(volume, issue, number):
+	if journal == "ApJ":
+		vol_issue_num = str(volume) + "/" + str(issue) + "/" + str(number)
+		
+		pre_vol_833 = "0004-637X/"
+		post_vol_833 = "1538-4357/"
 	
-	apj_base = "http://iopscience.iop.org/article/10.3847/2041-8213/"
-	apj_base2 = "http://iopscience.iop.org/article/10.3847/2041-8205/"  # different base URL before vol.833 iss.2 for some reason
+	elif journal == "ApJL":
+		vol_issue_num = str(volume) + "/" + str(issue) + "/" + 'L' + str(number)
+		
+		pre_vol_833 = "2041-8205/"
+		post_vol_833 = "2041-8213/"
 
-	vol_issue = str(volume) + "/" + str(issue) + "/"
 
+	# URLs slightly different before vol.833 iss.2 for some reason
 	if volume > 833:
-	    url = apj_base + vol_issue + 'L' + str(number)
+	    url = base_url + post_vol_833 + vol_issue_num
 	else:
-	    url = apj_base2 + vol_issue + 'L' + str(number)
+	    url = base_url + pre_vol_833 + vol_issue_num
 
 	return url
 

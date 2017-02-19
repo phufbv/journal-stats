@@ -1,5 +1,5 @@
 from file_writer import FileWriter
-import parameters
+import parameters as pars
 import html
 
 from datetime import datetime
@@ -13,6 +13,7 @@ def get_received_date(date_string):
 
 	return received_date
 
+
 def get_accepted_date(date_string):
 	start = date_string.find("Accepted ") + 9
 	end = date_string.find("Published")
@@ -20,6 +21,7 @@ def get_accepted_date(date_string):
 	accepted_date = date_string[start:end]
 
 	return accepted_date
+
 
 def find_difference(date1, date2):
 	d1 = datetime.strptime(date1, "%Y %B %d")
@@ -30,13 +32,13 @@ def find_difference(date1, date2):
 	return difference
 
 
-writer = FileWriter(parameters.filename)
+writer = FileWriter(pars.filename)
 
-for volume in reversed(parameters.volume_list):
+for volume in reversed(pars.volume_list):
 
-	for number in range(1,parameters.num_articles+1):
+	for number in range(1,pars.num_articles+1):
 
-		url = html.build_url(volume, parameters.issue, number)
+		url = html.build_url(pars.journal, volume, pars.issue, number)
 	    
 		try:
 			date_string = html.get_date_div(url)
