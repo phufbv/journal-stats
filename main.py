@@ -1,35 +1,8 @@
-from file_writer import FileWriter
 import parameters as pars
 import html
 
-from datetime import datetime
-
-
-def get_received_date(date_string):
-	start = date_string.find("Received ") + 9
-	end = date_string.find("Accepted")
-		    
-	received_date = date_string[start:end]
-
-	return received_date
-
-
-def get_accepted_date(date_string):
-	start = date_string.find("Accepted ") + 9
-	end = date_string.find("Published")
-		    
-	accepted_date = date_string[start:end]
-
-	return accepted_date
-
-
-def find_difference(date1, date2):
-	d1 = datetime.strptime(date1, "%Y %B %d")
-	d2 = datetime.strptime(date2, "%Y %B %d")
-		    
-	difference = abs((d2 - d1).days)
-
-	return difference
+from file_writer import FileWriter
+from article import Article
 
 
 writer = FileWriter(pars.filename)
@@ -47,10 +20,8 @@ for volume in reversed(pars.volume_list):
 			break
 
 
-		received_date = get_received_date(date_string)
-		accepted_date = get_accepted_date(date_string)
-		difference = find_difference(received_date, accepted_date)
-	    
-		writer.write_to_file(received_date, accepted_date, difference)
+		article = Article(date_string)
+
+		writer.write_to_file(article)
 
 writer.close_file()
