@@ -7,7 +7,7 @@ from article import Article
 
 writer = FileWriter(pars.filename)
 
-for volume in reversed(pars.volume_list):
+for volume in reversed(pars.volumes):
 
 	for number in range(1,pars.num_articles+1):
 

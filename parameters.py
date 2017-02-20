@@ -1,8 +1,8 @@
-# Name of output file
-filename = "dates.csv"
-
 # Select journal - must be either "ApJ" or "ApJL"
 journal = "ApJ"
+
+# Name of output file
+filename = journal + "_dates.csv"
 
 # Number of articles to use from each issue
 num_articles = 30
@@ -13,6 +13,16 @@ issue = 1
 # Number of volumes to use
 num_volumes = 18  # 18 volumes per year
 
+
+
+
+from datetime import datetime
+current_year = datetime.now().year
+
+volume_directory = {
+	'2017':'836',
+	}
+
 latest_volume = 836  # same for both ApJ and ApJL - issues run in parallel
 
-volume_list = range(latest_volume-num_volumes+1,latest_volume+1)
+volumes = range(latest_volume-num_volumes+1,latest_volume+1)
