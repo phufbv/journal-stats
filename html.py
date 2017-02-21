@@ -18,7 +18,7 @@ def detect_start_volume():
 	# Find first February volume of current year by adding 2
 	start_volume = vol + 2
 	
-	return start_volume
+	return (start_volume, current_year-1)
 
 
 def build_url(journal, volume, issue, number):

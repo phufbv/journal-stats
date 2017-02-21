@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 class Article:
 
 	def __init__(self, date_string):
@@ -20,6 +21,8 @@ class Article:
 		end = date_string.find("Published")
 		    
 		self.__accepted_date = date_string[start:end]
+
+		self.year = int(self.__accepted_date[0:4])
 
 
 	def __find_difference(self):
