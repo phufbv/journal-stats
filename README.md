@@ -19,4 +19,4 @@ The program will attempt to load the URLs of the first 30 articles in issue 1 of
 
 The program will loop through the previous 18 volumes in this manner, corresponding to the previous year, to return the dates for a sample of at least 500 articles (URLs on the ApJ website are not entirely consistent, so the date retrieval may fail for some articles).
 
-For at least the last 5 years (2012 - 2016 inclusive), there have been 18 volumes of ApJ per year, each with 2 issues. The program currently takes Volume 836 (Number 1, 10 February 2017) as a benchmark, and assumes that this pattern will continue. 
+For at least the last 5 years (2012 - 2016 inclusive), there have been 18 volumes of ApJ per year, each with 2 issues. The program currently takes Volume 800 (Number 1, 10 February 2015) as a benchmark, and assumes that this pattern will continue. 

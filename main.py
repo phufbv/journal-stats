@@ -9,7 +9,7 @@ writer = FileWriter(pars.filename)
 
 for volume in reversed(pars.volumes):
 
-	for number in range(1,pars.num_articles+1):
+	for number in range(1, pars.num_articles+1):
 
 		url = html.build_url(pars.journal, volume, pars.issue, number)
 	    

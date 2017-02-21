@@ -19,10 +19,10 @@ num_volumes = 18  # 18 volumes per year
 from datetime import datetime
 current_year = datetime.now().year
 
-volume_directory = {
-	'2017':'836',
-	}
+volume_directory = {}
+for year in range(0, 20):
+	volume_directory[2015+year] = 800 + (year*num_volumes)
 
-latest_volume = 836  # same for both ApJ and ApJL - issues run in parallel
+start_volume = volume_directory[current_year]  # same for both ApJ and ApJL - issues run in parallel
 
-volumes = range(latest_volume-num_volumes+1,latest_volume+1)
+volumes = range(start_volume-num_volumes+1, start_volume+1)
