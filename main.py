@@ -5,9 +5,12 @@ from file_writer import FileWriter
 from article import Article
 
 
+start_volume = html.detect_start_volume()
+volumes = range(start_volume-pars.num_volumes+1, start_volume+1)
+
 writer = FileWriter(pars.filename)
 
-for volume in reversed(pars.volumes):
+for volume in reversed(volumes):
 
 	for number in range(1, pars.num_articles+1):
 

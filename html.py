@@ -1,5 +1,24 @@
+from datetime import datetime
 import requests
 from BeautifulSoup import BeautifulSoup
+
+
+def detect_start_volume():
+	current_year = datetime.now().year
+
+	r = requests.get("http://iopscience.iop.org/journal/0004-637X")
+	soup = BeautifulSoup(r.content)
+
+	volumes = soup.find('select', attrs={'id':'allVolumesSelector'}).text  # 'Journal archive' dropdown menu
+
+	# Find first volume of current year
+	pos = volumes.rfind(str(current_year))  # first occurrence of current year in list of volumes
+	vol = int(volumes[pos-5:pos-2])  # get just the number out of the string
+
+	# Find first February volume of current year by adding 2
+	start_volume = vol + 2
+	
+	return start_volume
 
 
 def build_url(journal, volume, issue, number):
