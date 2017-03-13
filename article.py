@@ -9,6 +9,12 @@ class Article:
 		self.__find_difference()
 
 
+	def get_dates(self):
+		dates = [self.__received_date, self.__accepted_date, self.__date_difference]
+
+		return dates
+
+
 	def __find_received_date(self, date_string):
 		start = date_string.find("Received ") + 9
 		end = date_string.find("Accepted")
@@ -30,9 +36,3 @@ class Article:
 		d2 = datetime.strptime(self.__accepted_date, "%Y %B %d")
 		    
 		self.__date_difference = abs((d2 - d1).days)
-
-
-	def get_dates(self):
-		dates = [self.__received_date, self.__accepted_date, self.__date_difference]
-
-		return dates
