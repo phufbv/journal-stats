@@ -27,10 +27,11 @@ class ArticleTests(TestCase):
 
     	self.assertEqual(expectedDaysDifference, daysDifference)
 
-    def test_article_stores_acceptance_year(self):
-        expectedYear = int('2017')
 
-        self.assertEqual(expectedYear, self.article.year)
+    def test_article_calculates_acceptance_year(self):
+        expectedYear = 2017
+
+        self.assertEqual(expectedYear, self.article.get_year())
 
 
 if __name__ == '__main__':

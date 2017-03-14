@@ -32,7 +32,7 @@ for volume in reversed(volumes):
 
 		article = Article(date_string)
 
-		if article.year == acceptance_year:
+		if article.get_year() == acceptance_year:
 			writer.write_to_file(article)
 
 writer.close_file()
