@@ -11,8 +11,8 @@ class ArticleTests(TestCase):
 
 
     def test_article_stores_dates(self):
-        expectedReceivedDate = '2016 November 21'
-    	expectedAcceptedDate = '2017 January 8'
+        expectedReceivedDate = '2016November21'
+    	expectedAcceptedDate = '2017January8'
 
         dates = self.article.get_dates()
 
@@ -32,6 +32,15 @@ class ArticleTests(TestCase):
         expectedYear = 2017
 
         self.assertEqual(expectedYear, self.article.get_year())
+
+
+    def test_article_handles_different_date_string_format(self):
+        test_string = 'DatesReceived2016 November 21Accepted2017 January 8Published2017 February 3'
+        article = Article(test_string)
+
+        expectedYear = 2017
+
+        self.assertEqual(expectedYear, article.get_year())
 
 
 if __name__ == '__main__':
