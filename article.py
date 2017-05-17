@@ -27,7 +27,7 @@ class Article:
 	def __find_received_date(self):
 		start = self.date_string.find("Received") + 8
 		end = self.date_string.find("Accepted")
-		    
+
 		return self.date_string[start:end]
 
 

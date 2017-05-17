@@ -10,7 +10,7 @@ class ArticleTests(TestCase):
         self.article = Article(test_string)
 
 
-    def test_article_stores_dates(self):
+    def test_article_gets_dates(self):
         expectedReceivedDate = '2016November21'
     	expectedAcceptedDate = '2017January8'
 

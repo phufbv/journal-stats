@@ -13,6 +13,10 @@ class HtmlTests(TestCase):
         self.test_num = 3
 
 
+    def test_can_detect_start_volume(self):
+        self.assertTrue(False)
+
+
     def test_html_builds_apj_url(self):
         journal = "ApJ"
         expectedUrl = self.base_url + "1538-4357/835/1/3"
