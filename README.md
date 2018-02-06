@@ -1,7 +1,7 @@
 ### Program description ###
 This program will go to The Astrophysical Journal website and retrieve the 'Received' and 'Accepted' dates for a sample of articles accepted in ApJ or ApJL in the previous year, saving them into a spreadsheet.
 
-Inputs: none  
+Inputs: journal name ('ApJ' or 'ApJL'), number of articles to sample per issue 
 Outputs: .csv file (open in Excel)
 
 ### Technical details ###
