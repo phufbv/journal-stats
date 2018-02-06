@@ -13,8 +13,14 @@ class HtmlTests(TestCase):
         self.test_num = 3
 
 
-    def test_can_detect_start_volume(self):
-        self.assertTrue(False)
+    def test_can_detect_start_volume_in_current_year(self):
+        yearToCover = 2017
+        expectedStartVol = 854
+
+        (start_volume, previous_year) = html.detect_start_volume()
+
+        self.assertEqual(yearToCover, previous_year)
+        self.assertEqual(expectedStartVol, start_volume)
 
 
     def test_html_builds_apj_url(self):
