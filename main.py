@@ -1,19 +1,26 @@
+import sys
 import parameters as pars
 import html
 
 from article import Article
 
 from file_writer import FileWriter
+
+
+# Setup output file, and use brief run if testing
 writer = FileWriter(pars.filename)
+issue = 1  # sample issue for each volume
+if len(sys.argv) > 1:
+	print "Testing....."
+	num_volumes = 1
+else:
+	num_volumes = 18  # 18 volumes per year
 
 
 # Sample papers accepted in previous year
 date = html.detect_start_volume()
 start_volume = date[0]
 acceptance_year = date[1]
-
-num_volumes = 18  # 18 volumes per year
-issue = 1  # sample issue for each volume
 
 volumes = range(start_volume-num_volumes+1, start_volume+1)
 
