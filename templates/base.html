@@ -1,0 +1,25 @@
+{% block body %}
+ 
+<div class="block1">
+<h1>Publication dates</h1>
+	<body>
+	<p>This program will go to The Astrophysical Journal website and retrieve the 'Received' and 'Accepted' dates for a sample of articles accepted in ApJ or ApJL in the previous year, saving them into a spreadsheet.</p>
+	<p></p>
+	<p>Inputs: journal name ('ApJ' or 'ApJL'), number of articles to sample per issue</p>
+	<p>Outputs: .csv file (open in Excel)</p>
+	<p></p>
+	<p></p>
+	<p>----------</p>
+	<p></p>
+	<h3>Current run parameters:</h3>
+	<p></p>
+	</body>
+
+	<form method="POST">
+	    <p>Journal: </p><input name="journal">
+	    <p>Number of articles to sample per issue: </p><input name="num_articles">
+	    <p><input type="submit" value="Get publication dates"></p>
+	</form>
+</div>
+
+{% endblock %}
