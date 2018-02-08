@@ -47,6 +47,34 @@ def build_url(journal, volume, issue, number):
 	return url
 
 
+def get_article_urls(journal, volume, issue):
+	
+	base_url = "http://iopscience.iop.org/"
+
+	contentsPageUrl = "http://iopscience.iop.org/issue/0004-637X/" + str(volume) + "/" + str(issue)
+	# contents page listing all articles in a given vol. and iss. of the journal
+
+	articleUrls = __get_article_tag(contentsPageUrl)
+
+
+
+
+
+#	if journal == "ApJ":
+#		vol_issue_num = str(volume) + "/" + str(issue)
+#		
+#		vol = "0004-637X/"
+#	
+#	elif journal == "ApJL":
+#		vol_issue_num = str(volume) + "/" + str(issue)
+#		
+#		vol = "2041-8205/"
+
+#	url = base_url + vol + vol_issue_num
+
+	return articleUrls[0]
+
+
 def get_date_div(url):
 	    
 	r = requests.get(url)
@@ -56,3 +84,18 @@ def get_date_div(url):
 	#dates = soup.find('div', attrs={'class':'article-meta'})
 
 	return dates
+
+
+def __get_article_tag(url):
+	    
+	r = requests.get(url)
+	soup = BeautifulSoup(r.content)
+
+	articleUrls = []
+
+	for article in soup.findAll('a', attrs={'class':'art-list-item-title'}):
+		url = article.attrs[0][1]
+		articleUrls.append(url.encode('utf-8'))
+
+	return articleUrls
+
