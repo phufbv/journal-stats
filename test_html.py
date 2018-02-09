@@ -25,7 +25,7 @@ class HtmlTests(TestCase):
 
 	def test_html_builds_apj_url(self):
 		#Functionally replaced by test_html_extracts_article_urls_from_contents_page
-		journal = "ApJ"
+		journal = "APJ"
 		expectedUrl = self.base_url + "1538-4357/835/1/3"
 
 		url = html.build_url(journal, self.test_vol, self.test_iss, self.test_num)
@@ -35,7 +35,7 @@ class HtmlTests(TestCase):
 
 	def test_html_builds_apjl_url(self):
 		#Functionally replaced by test_html_extracts_article_urls_from_contents_page
-		journal = "ApJL"
+		journal = "APJL"
 		expectedUrl = self.base_url + "2041-8213/835/1/L3"
 
 		url = html.build_url(journal, self.test_vol, self.test_iss, self.test_num)
@@ -48,7 +48,7 @@ class HtmlTests(TestCase):
 		test_vol = 831
 		expectedUrl = self.base_url + "2041-8205/831/1/L3"
 
-		url = html.build_url("ApJL", test_vol, self.test_iss, self.test_num)
+		url = html.build_url("APJL", test_vol, self.test_iss, self.test_num)
 
 		self.assertEqual(expectedUrl, url)
 
@@ -58,7 +58,7 @@ class HtmlTests(TestCase):
 		test_vol = 833
 		expectedUrl = self.base_url + "2041-8205/833/1/L3"
 
-		url = html.build_url("ApJL", test_vol, self.test_iss, self.test_num)
+		url = html.build_url("APJL", test_vol, self.test_iss, self.test_num)
 
 		self.assertEqual(expectedUrl, url)
 
@@ -72,31 +72,31 @@ class HtmlTests(TestCase):
 
 
 	def test_html_extracts_article_urls_from_contents_page_apj(self):
-		journal = "ApJ"
+		journal = "APJ"
 		volume = 836
 		issue = 2
 
-		expectedArticleUrls = ["/article/10.3847/1538-4357/aa5be8","/article/10.3847/1538-4357/aa5b8b","/article/10.3847/1538-4357/aa5b88","/article/10.3847/1538-4357/836/2/152","/article/10.3847/1538-4357/836/2/153"]
+		expectedArticleUrls = ["http://iopscience.iop.org/article/10.3847/1538-4357/aa5be8","http://iopscience.iop.org/article/10.3847/1538-4357/aa5b8b","http://iopscience.iop.org/article/10.3847/1538-4357/aa5b88","http://iopscience.iop.org/article/10.3847/1538-4357/836/2/152","http://iopscience.iop.org/article/10.3847/1538-4357/836/2/153"]
 		#URLs of first 5 articles in this issue
 
-		articleUrls = html.get_article_urls(journal, volume, issue)
+		articleUrls = html.build_urls(journal, volume, issue)
 		#URLs of all articles in the issue
 
-		self.assertEqual(expectedArticleUrls, articleUrls[:4])
+		self.assertEqual(expectedArticleUrls, articleUrls[:5])
 
 
-	# def test_html_extracts_article_urls_from_contents_page_apjl(self):
-	# 	journal = "ApJ"
-	# 	volume = 836
-	# 	issue = 2
+	def test_html_extracts_article_urls_from_contents_page_apjl(self):
+		journal = "APJL"
+		volume = 836
+		issue = 2
 
-	# 	expectedArticleUrls = ["/article/10.3847/2041-8213/836/2/L17","/article/10.3847/2041-8213/aa5dab","/article/10.3847/2041-8213/aa5cb0","/article/10.3847/2041-8213/aa5eb0","/article/10.3847/2041-8213/aa5dee"]
-	# 	#URLs of first 5 articles in this issue
+		expectedArticleUrls = ["http://iopscience.iop.org/article/10.3847/2041-8213/836/2/L17","http://iopscience.iop.org/article/10.3847/2041-8213/aa5dab","http://iopscience.iop.org/article/10.3847/2041-8213/aa5cb0","http://iopscience.iop.org/article/10.3847/2041-8213/aa5eb0","http://iopscience.iop.org/article/10.3847/2041-8213/aa5dee"]
+		#URLs of first 5 articles in this issue
 
-	# 	articleUrls = html.get_article_urls(journal, volume, issue)
-	# 	#URLs of all articles in the issue
+		articleUrls = html.build_urls(journal, volume, issue)
+		#URLs of all articles in the issue
 
-	# 	self.assertEqual(expectedArticleUrls, articleUrls[:4])
+		self.assertEqual(expectedArticleUrls, articleUrls[:5])
 
 
 if __name__ == '__main__':

@@ -7,14 +7,18 @@ from article import Article
 from file_writer import FileWriter
 
 
-# Setup output file, and use brief run if testing
+# Setup output file, get input parameters, and use brief run if testing
 writer = FileWriter(pars.filename)
+journal = pars.journal.upper()  # journal name
+num_articles = pars.num_articles  # number of articles to use from each issue
+
+num_volumes = 18  # 18 volumes per year
 issue = 1  # sample issue for each volume
+
 if len(sys.argv) > 1:
 	print "Testing....."
+	num_articles = 10
 	num_volumes = 1
-else:
-	num_volumes = 18  # 18 volumes per year
 
 
 # Sample papers accepted in previous year
@@ -27,9 +31,13 @@ volumes = range(start_volume-num_volumes+1, start_volume+1)
 
 for volume in reversed(volumes):
 
-	for number in range(1, pars.num_articles+1):
+	# Go to volume/issue contents page, and extract URLs of articles
+	articles = html.build_urls(journal, volume, issue)
+	
+	for num in range(1, num_articles+1):
 
-		url = html.build_url(pars.journal, volume, issue, number)
+		# For first 'num_articles' in this volume/issue, try to extract date string from article webpage
+		url = articles[num]
 	    
 		try:
 			date_string = html.get_date_div(url)

@@ -1,5 +1,5 @@
 # Select journal - must be either "ApJ" or "ApJL"
-journal = "ApJL"
+journal = "ApJ"
 
 # Name of output file
 filename = "out/" + journal + "_dates.csv"

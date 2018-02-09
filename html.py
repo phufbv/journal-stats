@@ -25,13 +25,13 @@ def build_url(journal, volume, issue, number):
 	
 	base_url = "http://iopscience.iop.org/article/10.3847/" 
 
-	if journal == "ApJ":
+	if journal == "APJ":
 		vol_issue_num = str(volume) + "/" + str(issue) + "/" + str(number)
 		
 		pre_vol_833 = "0004-637X/"
 		post_vol_833 = "1538-4357/"
 	
-	elif journal == "ApJL":
+	elif journal == "APJL":
 		vol_issue_num = str(volume) + "/" + str(issue) + "/" + 'L' + str(number)
 		
 		pre_vol_833 = "2041-8205/"
@@ -47,32 +47,17 @@ def build_url(journal, volume, issue, number):
 	return url
 
 
-def get_article_urls(journal, volume, issue):
-	
-	base_url = "http://iopscience.iop.org/"
+def build_urls(journal, volume, issue):
 
-	contentsPageUrl = "http://iopscience.iop.org/issue/0004-637X/" + str(volume) + "/" + str(issue)
-	# contents page listing all articles in a given vol. and iss. of the journal
+	base_url = "http://iopscience.iop.org"
 
-	articleUrls = __get_article_tag(contentsPageUrl)
+	contentsPageUrl = __build_contents_page_url(base_url, journal, volume, issue)
+	# URL of contents page listing all articles in a given vol. and iss. of the journal
 
+	articleUrls = __get_article_urls(base_url, contentsPageUrl)
+	# URLs of all articles extracted from contents page
 
-
-
-
-#	if journal == "ApJ":
-#		vol_issue_num = str(volume) + "/" + str(issue)
-#		
-#		vol = "0004-637X/"
-#	
-#	elif journal == "ApJL":
-#		vol_issue_num = str(volume) + "/" + str(issue)
-#		
-#		vol = "2041-8205/"
-
-#	url = base_url + vol + vol_issue_num
-
-	return articleUrls[0]
+	return articleUrls
 
 
 def get_date_div(url):
@@ -86,8 +71,20 @@ def get_date_div(url):
 	return dates
 
 
-def __get_article_tag(url):
-	    
+def __build_contents_page_url(base_url, journal, volume, issue):
+
+	if journal == "APJ":
+		journal_code = "/0004-637X/"
+	elif journal == "APJL":
+		journal_code = "/2041-8205/"
+
+	contentsPageUrl = base_url + "/issue" + journal_code + str(volume) + "/" + str(issue)
+
+	return contentsPageUrl
+
+
+def __get_article_urls(base_url, url):
+
 	r = requests.get(url)
 	soup = BeautifulSoup(r.content)
 
@@ -95,7 +92,7 @@ def __get_article_tag(url):
 
 	for article in soup.findAll('a', attrs={'class':'art-list-item-title'}):
 		url = article.attrs[0][1]
-		articleUrls.append(url.encode('utf-8'))
+		articleUrls.append(base_url + url.encode('utf-8'))
 
 	return articleUrls
 
