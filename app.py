@@ -21,7 +21,10 @@ def form_post():
 	journal = request.form['journal']
 	num_articles = request.form['num_articles']
 
-	run_script(journal, num_articles)
+	if pars.valid(journal, num_articles):
+		run_script(journal, num_articles)
+	else:
+		return render_template('input_error.html')
 
 	return "Complete!"
 
