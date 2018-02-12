@@ -21,12 +21,12 @@ def form_post():
 	journal = request.form['journal']
 	num_articles = request.form['num_articles']
 
-	processed_text = journal.upper()
-	return processed_text
+	run_script(journal, num_articles)
+
+	return "Complete!"
 
 
-@app.route("/random")
-def get_results():
+def run_script(journal, num_articles):
 	# Setup output file, and use brief run if testing
 	writer = FileWriter(pars.filename)
 	issue = 1  # sample issue for each volume
@@ -45,26 +45,24 @@ def get_results():
 	volumes = range(start_volume-num_volumes+1, start_volume+1)
 
 
-	for volume in reversed(volumes):
+	# for volume in reversed(volumes):
 
-		for number in range(1, pars.num_articles+1):
+	# 	for number in range(1, pars.num_articles+1):
 
-			url = html.build_url(pars.journal, volume, issue, number)
+	# 		url = html.build_url(pars.journal, volume, issue, number)
 		    
-			try:
-				date_string = html.get_date_div(url)
-			except:
-				print "Some error occurred (URL '",url,"' not available?). Skipping."
-				break
+	# 		try:
+	# 			date_string = html.get_date_div(url)
+	# 		except:
+	# 			print "Some error occurred (URL '",url,"' not available?). Skipping."
+	# 			break
 
-			article = Article(date_string)
+	# 		article = Article(date_string)
 
-			if article.get_year() == acceptance_year:
-				writer.write_to_file(article)
+	# 		if article.get_year() == acceptance_year:
+	# 			writer.write_to_file(article)
 
 	writer.close_file()
-
-	return "Complete!"
 
 
 if __name__ == "__main__":
