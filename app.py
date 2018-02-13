@@ -15,11 +15,11 @@ def index():
 @app.route('/', methods=['POST'])
 def form_post():
 #https://stackoverflow.com/questions/12277933/send-data-from-a-textbox-into-flask
-	journal = request.form['journal']
+	journal = request.form['journal'].upper()
 	num_articles = request.form['num_articles']
 
 	if pars.valid(journal, num_articles):
-		script.run(journal.upper(), num_articles)
+		script.run(journal, num_articles)
 	else:
 		return render_template('input_error.html')
 
