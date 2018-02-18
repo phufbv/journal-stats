@@ -51,3 +51,7 @@ def run(journal, num_articles):
 	# 			writer.write_to_file(article)
 
 	writer.close_file()
+
+
+if __name__ == "__main__":
+    run(pars.journal, pars.num_articles)
